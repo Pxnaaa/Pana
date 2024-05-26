@@ -37,7 +37,9 @@ def upload_image():
 
 @app.route("/results")
 def results():
+    
     filename = session.get('filename')  # Retrieve the filename from the session
+    print(filename)
     if filename:
         # Perform any image processing or analysis here
         # based on the filename or the image data

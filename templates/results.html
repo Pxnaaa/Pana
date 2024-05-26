@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Say Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASC - Analyzing Sea Creatures</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <div id="fullScreenImageContainer">
-        <img src="https://scontent.fsyd11-1.fna.fbcdn.net/v/t39.30808-1/438254276_2799351346889313_6693145918194251885_n.jpg?stp=c122.0.480.480a_dst-jpg_p480x480&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rF-jh1yQVLAQ7kNvgGTXif9&_nc_ht=scontent.fsyd11-1.fna&oh=00_AYBUvOVjSXb4C7usdXrYpEQdFM9neCkajbWityYIyy2Rtg&oe=66588490" alt="Full Screen Image" id="fullScreenImage">
-    </div>
+    <header>
+        <img src="logo.png" alt="ASC Logo" id="logo">
+        <h1>Fish</h1>
+        <button onclick="location.href='upload.html'">Upload Image</button>
+    </header>
+    <main>
+        <section id="fish-image">
+            <img src="clownfish.jpg" alt="Clown Fish">
+            <h2>Clown fish</h2>
+        </section>
+        <section id="fish-info">
+            <h3>Information</h3>
+            <p><strong>Sea Creature:</strong> <span>Clown Fish</span></p>
+            <p><strong>Life Expectancy:</strong> <span>5-10 years</span></p>
+            <p><strong>Diet:</strong> <span>Algae, zooplankton</span></p>
+            <p><strong>Rarity:</strong> <span>Common</span></p>
+            <p><strong>Found in:</strong> <span>Coral Reefs</span></p>
+            <p><strong>Habitat:</strong> <span>Tropical</span></p>
+        </section>
+    </main>
 </body>
 </html>
