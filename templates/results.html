@@ -8,24 +8,50 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="ASC Logo" id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ASC Logo" id="logo">
         <h1>Fish</h1>
-        <button onclick="location.href='upload.html'">Upload Image</button>
+        <!-- Removed direct link to upload.html, now triggering file input -->
+        <button onclick="document.getElementById('fileInput').click();">Upload Image</button>
     </header>
     <main>
         <section id="fish-image">
-            <img src="clownfish.jpg" alt="Clown Fish">
-            <h2>Clown fish</h2>
+            <img src="{{ url_for('static', filename='images/clownfish.jpg') }}" alt="Clown Fish">
+            <h2>Fish [INSERT CUSTOM VAR HERE]</h2>
         </section>
         <section id="fish-info">
             <h3>Information</h3>
-            <p><strong>Sea Creature:</strong> <span>Clown Fish</span></p>
-            <p><strong>Life Expectancy:</strong> <span>5-10 years</span></p>
-            <p><strong>Diet:</strong> <span>Algae, zooplankton</span></p>
-            <p><strong>Rarity:</strong> <span>Common</span></p>
-            <p><strong>Found in:</strong> <span>Coral Reefs</span></p>
-            <p><strong>Habitat:</strong> <span>Tropical</span></p>
+            <p><strong>Sea Creature:</strong> <span>Fish [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Life Expectancy:</strong> <span>5-10 years [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Diet:</strong> <span>Algae, zooplankton [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Rarity:</strong> <span>Common [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Found in:</strong> <span>Coral Reefs [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Habitat:</strong> <span>Tropical [INSERT CUSTOM VAR HERE]</span></p>
         </section>
+        <div id="buttonContainer" style="display:none;">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" id="fileInput" required>
+            </form>
+            <button id="anotherButton" onclick="redirectToResults()">Check the Animal</button>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
     </main>
+    <script>
+        function redirectToResults() {
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput.files.length > 0) {
+                fileInput.form.submit();
+            } else {
+                alert('Please select a file first');
+            }
+        }
+    </script>
 </body>
 </html>
