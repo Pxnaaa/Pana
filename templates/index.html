@@ -10,11 +10,10 @@
         <img src="https://scontent.fsyd11-1.fna.fbcdn.net/v/t39.30808-1/438254276_2799351346889313_6693145918194251885_n.jpg?stp=c122.0.480.480a_dst-jpg_p480x480&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=rF-jh1yQVLAQ7kNvgGTXif9&_nc_ht=scontent.fsyd11-1.fna&oh=00_AYBUvOVjSXb4C7usdXrYpEQdFM9neCkajbWityYIyy2Rtg&oe=66588490" alt="Full Screen Image" id="fullScreenImage">
     </div>
     <div id="buttonContainer">
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="file" accept="image/*" id="fileInput" required>
-
+            <button type="submit" id="submitButton">Upload and Check the Animal</button>
         </form>
-        <button id="anotherButton" onclick="redirectToResults()">Check the Animal</button>
     </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -26,15 +25,16 @@
         {% endif %}
     {% endwith %}
     <script>
-        function redirectToResults() {
+        document.getElementById('uploadForm').onsubmit = function() {
             const fileInput = document.getElementById('fileInput');
 
             if (fileInput.files.length > 0) {
-                window.location.href = '/results';
+                document.getElementById('submitButton').disabled = true;
             } else {
                 alert('Please select a file first');
+                return false;
             }
-        }
+        };
     </script>
 </body>
 </html>
