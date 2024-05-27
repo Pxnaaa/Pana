@@ -9,23 +9,23 @@
 <body>
     <header>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ASC Logo" id="logo">
-        <h1>Fish</h1>
+        <h1>{{ class_name }}</h1>
         <!-- Removed direct link to upload.html, now triggering file input -->
         <button onclick="document.getElementById('fileInput').click();">Upload Image</button>
     </header>
     <main>
         <section id="fish-image">
             <img src="{{ url_for('static', filename='images/clownfish.jpg') }}" alt="Clown Fish">
-            <h2>Fish [INSERT CUSTOM VAR HERE]</h2>
+            <h2>{{ result['Desc'] }}</h2>
         </section>
         <section id="fish-info">
             <h3>Information</h3>
-            <p><strong>Sea Creature:</strong> <span>Fish [INSERT CUSTOM VAR HERE]</span></p>
-            <p><strong>Life Expectancy:</strong> <span>5-10 years [INSERT CUSTOM VAR HERE]</span></p>
-            <p><strong>Diet:</strong> <span>Algae, zooplankton [INSERT CUSTOM VAR HERE]</span></p>
-            <p><strong>Rarity:</strong> <span>Common [INSERT CUSTOM VAR HERE]</span></p>
-            <p><strong>Found in:</strong> <span>Coral Reefs [INSERT CUSTOM VAR HERE]</span></p>
-            <p><strong>Habitat:</strong> <span>Tropical [INSERT CUSTOM VAR HERE]</span></p>
+            <p><strong>Sea Creature:</strong> <span>{{ class_name }}</span></p>
+            <p><strong>Life Expectancy:</strong> <span>{{ result['Life Expectancy'] }}</span></p>
+            <p><strong>Diet:</strong> <span>{{ result['Diet'] }}</span></p>
+            <p><strong>Rarity:</strong> <span>{{ result['Rarity'] }}</span></p>
+            <p><strong>Found in:</strong> <span>{{ result['Found in'] }}</span></p>
+            <p><strong>Habitat:</strong> <span>{{ result['Habitat'] }}</span></p>
         </section>
         <div id="buttonContainer" style="display:none;">
             <form action="/upload" method="post" enctype="multipart/form-data">
