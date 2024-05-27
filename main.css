@@ -19,27 +19,53 @@
 
 #buttonContainer {
     position: fixed;
-    top:58%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -50%);
     z-index: 2;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;  /* Increased gap for better vertical spacing */
+    padding: 20px; /* Padding around the form for better look */
+    background: #fff; /* Optional: adds a background color */
+    border-radius: 10px; /* Rounded corners for the form */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for better depth */
+    width: 350px; /* Wider form for better layout */
 }
 
 /* Button styles */
-#buttonContainer input[type="file"] {
-    padding: 30px 35px;
-    font-size: 18px;
+
+#buttonContainer input[type="file"],
+#buttonContainer button {
+    width: 100%; /* Full width for better visual */
+    padding: 12px 20px; /* More padding for bigger touch area */
+    font-size: 16px; /* Larger font for better readability */
+    margin: 8px 0; /* Ensure there's space around buttons */
+}
+
+
+#buttonContainer input[type="file"]:hover,
+#buttonContainer button:hover {
+    background-color: #0056b3;
+}
+#buttonContainer button {
+    padding: 10px 20px;
+    font-size: 16px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    width: 250px; /* Consistent width */
+}
+#buttonContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Adjust the width as needed */
 }
 
-#buttonContainer input[type="file"]:hover {
-    background-color: #0056b3;
-}
 
 
 #abuttonContainer {
@@ -99,21 +125,31 @@ header #logo {
 header h1 {
     margin: 0;
 }
-
 main {
     display: flex;
     justify-content: space-around;
     padding: 20px;
+
+}
+
+#fish-image {
+    width: 75%; /* Set the width of the section to 75% of its parent */
+    margin: auto; /* Center the section horizontally */
+    border: 5px solid #ddd; /* This remains from your previous CSS */
 }
 
 #fish-image img {
     width: 300px;
     height: auto;
     border: 5px solid #ddd;
+    text-align: center;
+    align-items: center;
 }
 
 #fish-image h2 {
     text-align: center;
+    font-weight: normal; /* As per your requirement */
+    font-size: 1.2em; /* Slightly larger text */
 }
 
 #fish-info {
@@ -142,4 +178,17 @@ button {
 
 button:hover {
     background-color: #007faa;
+}
+
+
+#logoContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Make sure the logo stays on top of other content */
+}
+
+#logo {
+    width: 100px; /* Adjust based on your logo's size */
+    height: auto;
 }

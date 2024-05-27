@@ -10,6 +10,10 @@ from PIL import Image
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 app = Flask(__name__)
 app.secret_key = "kkkkk"
+def nl2br(value):
+    """Converts newlines in a string to HTML line breaks."""
+    return value.replace('\n', '<br><br>')
+app.jinja_env.filters['nl2br'] = nl2br
 
 # Ensure the upload directory exists
 UPLOAD_FOLDER = 'static/uploads'
@@ -26,6 +30,8 @@ def index():
     print("YES", file=sys.stderr)
     print("---------------", file=sys.stderr)
     return render_template("index.html")
+
+
 
 @app.route("/greet", methods=["POST", "GET"])
 def greet():
@@ -58,7 +64,7 @@ def upload_image():
 
 class_details = {
     'Clams': {
-        'Desc': 'Clams are bivalve mollusks found in both freshwater and marine environments, characterized by their hard, hinged shells that consist of two symmetrical halves. These fascinating creatures play a crucial role in aquatic ecosystems, acting as natural filters by drawing in water and extracting plankton, algae, and other microscopic organisms for nourishment. This filtration process not only helps maintain water quality but also supports the broader food web. Clams have a muscular foot that allows them to burrow into the sediment, providing them with protection from predators such as starfish, birds, and humans. There are many species of clams, varying in size, shape, and habitat preferences. Some, like the giant clam, can reach impressive sizes and are found in coral reefs, while others, such as the soft-shell clam, inhabit sandy or muddy shores. Clams reproduce by releasing eggs and sperm into the water column, where fertilization occurs externally. The resulting larvae drift as plankton before settling on the seabed and developing into adult clams. In addition to their ecological importance, clams are highly valued as a food source worldwide. They can be consumed raw, steamed, boiled, baked, or fried, and are often included in dishes like clam chowder and paella. Clam harvesting can be done sustainably, but overfishing and habitat destruction pose significant threats to clam populations. Efforts to protect and restore clam habitats, along with responsible aquaculture practices, are essential for ensuring the continued availability of these vital and versatile mollusks.',
+        'Desc': 'Clams are bivalve mollusks found in both freshwater and marine environments, characterized by their hard, hinged shells that consist of two symmetrical halves. These fascinating creatures play a crucial role in aquatic ecosystems, acting as natural filters by drawing in water and extracting plankton, algae, and other microscopic organisms for nourishment. This filtration process not only helps maintain water quality but also supports the broader food web. Clams have a muscular foot that allows them to burrow into the sediment, providing them with protection from predators such as starfish, birds, and humans.\n There are many species of clams, varying in size, shape, and habitat preferences. Some, like the giant clam, can reach impressive sizes and are found in coral reefs, while others, such as the soft-shell clam, inhabit sandy or muddy shores. Clams reproduce by releasing eggs and sperm into the water column, where fertilization occurs externally. The resulting larvae drift as plankton before settling on the seabed and developing into adult clams. \nIn addition to their ecological importance, clams are highly valued as a food source worldwide. They can be consumed raw, steamed, boiled, baked, or fried, and are often included in dishes like clam chowder and paella. Clam harvesting can be done sustainably, but overfishing and habitat destruction pose significant threats to clam populations. Efforts to protect and restore clam habitats, along with responsible aquaculture practices, are essential for ensuring the continued availability of these vital and versatile mollusks.',
         'Life Expectancy': '20-30 years',
         'Diet': 'Filter feeders',
         'Rarity': 'Common',
@@ -253,9 +259,11 @@ def results():
     print(rel_filepath, file=sys.stderr)
     class_name = classify_upload(rel_filepath)
     print(class_name, file=sys.stderr)
+    rel_filepath_new = f"uploads/{filepath}"
+
     if filepath:
         result = class_details.get(class_name, {})
-        return render_template("results.html", class_name=class_name, result=result)
+        return render_template("results.html", class_name=class_name, result=result, filepath=rel_filepath_new)
     else:
         return render_template("results.html")
 

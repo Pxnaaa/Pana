@@ -1,3 +1,80 @@
+#fullScreenImageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Image styles */
+#fullScreenImageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#buttonContainer {
+    position: fixed;
+    top:58%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    z-index: 2;
+
+}
+
+/* Button styles */
+#buttonContainer input[type="file"] {
+    padding: 30px 35px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 120; /* Adds 20px space below the input field */
+}
+
+#buttonContainer input[type="file"]:hover {
+    background-color: #0056b3;
+}
+
+
+#abuttonContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#anotherButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#anotherButton:hover {
+    background-color: #0056b3;
+}
+
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust the value as needed */
+}
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f2;
@@ -23,12 +100,14 @@ header #logo {
 header h1 {
     margin: 0;
 }
-
 main {
     display: flex;
     justify-content: space-around;
     padding: 20px;
+    max-width: 75%;
+    margin: 0 auto; /* Center align the main content */
 }
+
 
 #fish-image img {
     width: 300px;
@@ -38,6 +117,8 @@ main {
 
 #fish-image h2 {
     text-align: center;
+    font-weight: normal; /* Changes font weight to normal */
+    font-size: 1.2em; /* Increases font size slightly */
 }
 
 #fish-info {

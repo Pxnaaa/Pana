@@ -10,14 +10,15 @@
     <header>
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ASC Logo" id="logo">
         <h1>{{ class_name }}</h1>
-        <!-- Removed direct link to upload.html, now triggering file input -->
         <button onclick="document.getElementById('fileInput').click();">Upload Image</button>
     </header>
     <main>
         <section id="fish-image">
-            <img src="{{ url_for('static', filename='images/clownfish.jpg') }}" alt="Clown Fish">
-            <h2>{{ result['Desc'] }}</h2>
+            <img src="{{ url_for('static', filename=filepath) }}" alt="Uploaded Image">
+
+            <h2>{{ result['Desc'] | nl2br | safe }}</h2>
         </section>
+
         <section id="fish-info">
             <h3>Information</h3>
             <p><strong>Sea Creature:</strong> <span>{{ class_name }}</span></p>
